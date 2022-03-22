@@ -1,0 +1,67 @@
+INFO 2022-03-22 16:07:43,897 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 16:22:54,064 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 16:23:08,540 basehttp 187 "GET /swagger/ HTTP/1.1" 200 2236
+INFO 2022-03-22 16:23:09,061 basehttp 187 "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,063 basehttp 187 "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,068 basehttp 187 "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,095 basehttp 187 "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,095 basehttp 187 "GET /static/drf-yasg/url-polyfill.min.js HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,096 basehttp 187 "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,097 basehttp 187 "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,098 basehttp 187 "GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+INFO 2022-03-22 16:23:09,623 basehttp 187 "GET /swagger/?format=openapi HTTP/1.1" 200 9423
+INFO 2022-03-22 16:23:10,045 basehttp 187 "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 200 628
+INFO 2022-03-22 16:24:00,781 autoreload 266 D:\测试开发\car\car\user\models.py changed, reloading.
+INFO 2022-03-22 16:24:02,865 autoreload 677 Watching for file changes with StatReloader
+WARNING 2022-03-22 16:26:10,538 log 241 Not Found: /
+WARNING 2022-03-22 16:26:10,539 basehttp 187 "GET / HTTP/1.1" 404 2894
+WARNING 2022-03-22 16:26:15,762 log 241 Not Found: /api
+WARNING 2022-03-22 16:26:15,766 basehttp 187 "GET /api HTTP/1.1" 404 2921
+INFO 2022-03-22 16:26:45,431 basehttp 187 "GET /swagger/ HTTP/1.1" 200 2236
+INFO 2022-03-22 16:26:45,882 basehttp 187 "GET /swagger/?format=openapi HTTP/1.1" 200 9423
+INFO 2022-03-22 16:26:46,392 basehttp 187 "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 200 628
+INFO 2022-03-22 16:27:32,137 basehttp 187 "GET /docs/ HTTP/1.1" 200 147874
+INFO 2022-03-22 16:27:32,281 basehttp 187 "GET /docs/schema.js HTTP/1.1" 200 12100
+WARNING 2022-03-22 16:27:32,604 log 241 Not Found: /api/
+WARNING 2022-03-22 16:27:32,605 basehttp 187 "GET /api/ HTTP/1.1" 404 3164
+WARNING 2022-03-22 16:27:35,824 log 241 Not Found: /api/
+WARNING 2022-03-22 16:27:35,824 basehttp 187 "GET /api/ HTTP/1.1" 404 3164
+INFO 2022-03-22 16:27:45,413 basehttp 187 "GET /api/login/ HTTP/1.1" 200 2694
+WARNING 2022-03-22 16:28:03,323 log 241 Not Found: /accounts/login/
+WARNING 2022-03-22 16:28:03,323 basehttp 187 "GET /accounts/login/?next=/swagger/ HTTP/1.1" 404 2972
+INFO 2022-03-22 16:28:36,117 basehttp 187 "GET /brand/ HTTP/1.1" 200 309
+INFO 2022-03-22 16:28:50,805 basehttp 187 "GET /brand/ HTTP/1.1" 200 17443
+INFO 2022-03-22 16:28:51,157 basehttp 187 "GET /static/rest_framework/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+INFO 2022-03-22 16:28:52,949 basehttp 187 "GET /api/login/?next=/brand/ HTTP/1.1" 200 2701
+INFO 2022-03-22 16:31:09,840 basehttp 187 "POST /api/login/ HTTP/1.1" 302 0
+WARNING 2022-03-22 16:31:09,856 log 241 Not Found: /accounts/profile/
+WARNING 2022-03-22 16:31:09,857 basehttp 187 "GET /accounts/profile/ HTTP/1.1" 404 2963
+INFO 2022-03-22 16:31:17,335 basehttp 187 "GET /brand/ HTTP/1.1" 200 17673
+INFO 2022-03-22 16:35:35,513 autoreload 266 D:\测试开发\car\car\brand\views.py changed, reloading.
+INFO 2022-03-22 16:35:37,710 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 16:36:12,744 autoreload 266 D:\测试开发\car\car\brand\views.py changed, reloading.
+INFO 2022-03-22 16:36:14,214 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 16:36:39,248 basehttp 187 "GET /swagger/ HTTP/1.1" 200 2466
+INFO 2022-03-22 16:36:39,798 basehttp 187 "GET /swagger/?format=openapi HTTP/1.1" 200 9423
+INFO 2022-03-22 16:36:40,025 basehttp 187 "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 200 628
+WARNING 2022-03-22 16:36:45,345 log 241 Not Found: /accounts/logout/
+WARNING 2022-03-22 16:36:45,345 basehttp 187 "GET /accounts/logout/?next=/swagger/ HTTP/1.1" 404 2975
+INFO 2022-03-22 16:36:53,994 basehttp 187 "GET /brand/ HTTP/1.1" 200 309
+INFO 2022-03-22 16:37:01,478 basehttp 187 "GET /brand/ HTTP/1.1" 200 17673
+INFO 2022-03-22 16:37:05,583 basehttp 187 "GET /api/logout/?next=/brand/ HTTP/1.1" 302 0
+WARNING 2022-03-22 16:37:05,631 log 241 Forbidden: /brand/
+WARNING 2022-03-22 16:37:05,631 basehttp 187 "GET /brand/ HTTP/1.1" 403 9816
+INFO 2022-03-22 16:37:13,898 basehttp 187 "GET /api/login/?next=/brand/ HTTP/1.1" 200 2701
+INFO 2022-03-22 16:37:20,492 basehttp 187 "POST /api/login/ HTTP/1.1" 302 0
+INFO 2022-03-22 16:37:20,764 basehttp 187 "GET /brand/ HTTP/1.1" 200 17673
+INFO 2022-03-22 16:38:06,371 basehttp 187 "GET /docs/ HTTP/1.1" 200 148191
+INFO 2022-03-22 16:38:06,891 basehttp 187 "GET /docs/schema.js HTTP/1.1" 200 12100
+INFO 2022-03-22 16:38:07,335 basehttp 187 "GET /static/rest_framework/docs/img/favicon.ico HTTP/1.1" 200 5430
+INFO 2022-03-22 16:38:11,955 basehttp 187 "GET /brand/ HTTP/1.1" 200 309
+INFO 2022-03-22 16:38:37,758 basehttp 187 "GET /brand/ HTTP/1.1" 200 309
+INFO 2022-03-22 17:16:54,010 autoreload 266 D:\测试开发\car\car\car\settings.py changed, reloading.
+INFO 2022-03-22 17:16:57,343 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 17:17:46,940 autoreload 266 D:\测试开发\car\car\car\settings.py changed, reloading.
+INFO 2022-03-22 17:17:47,846 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 17:23:48,807 autoreload 677 Watching for file changes with StatReloader
+INFO 2022-03-22 17:24:12,821 autoreload 266 D:\测试开发\car\car\car\settings.py changed, reloading.

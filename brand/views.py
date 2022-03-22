@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import mixins
+from rest_framework import mixins, permissions
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
 from rest_framework.generics import GenericAPIView
@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from .models import Brand
 from .serializers import BrandModelSerializer, BrandNameSerializer, BrandByTypeSerializer
 from rest_framework import viewsets
+from rest_framework_jwt import settings
 
 
 # Create your views here.
@@ -39,6 +40,9 @@ class BrandView(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     ordering_fields = ["id", "name"]
     filterset_fields = ["id", "name"]
+
+    # 权限设置
+    permission_classes = [permissions.IsAuthenticated]
 
     @action(methods=["get"], detail=False)
     def names(self, request):
