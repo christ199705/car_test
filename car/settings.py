@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import datetime
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     "type",
     "brand",
     'django_filters',
+    'rest_framework',
+    "drf_yasg",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -125,4 +128,73 @@ REST_FRAMEWORK = {
                                'django_filters.rest_framework.DjangoFilterBackend',
                                "django_filters.rest_framework.backends.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "utils.pagination.PageNumberPaginationManual",
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+
+    ],
+}
+
+# 日志配置
+# LOGGING = {
+#     'version': 1,  # 使用的python内置的logging模块，那么python可能会对它进行升级，所以需要写一个版本号，目前就是1版本
+#     'disable_existing_loggers': False,  # 是否去掉目前项目中其他地方中以及使用的日志功能，但是将来我们可能会引入第三方的模块，里面可能内置了日志功能，所以尽量不要关闭。
+#     'formatters': {  # 日志记录格式
+#         'verbose': {  # levelname等级，asctime记录时间，module表示日志发生的文件名称，lineno行号，message错误信息
+#             'format': '%(levelname)s %(asctime)s %(module)s %(lineno)d %(message)s'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(module)s %(lineno)d %(message)s'
+#         },
+#     },
+#     'filters': {  # 过滤器：可以对日志进行输出时的过滤用的
+#         'require_debug_true': {  # 在debug=True下产生的一些日志信息，要不要记录日志，需要的话就在handlers中加上这个过滤器，不需要就不加
+#             '()': 'django.utils.log.RequireDebugTrue',
+#         },
+#         'require_debug_false': {  # 和上面相反
+#             '()': 'django.utils.log.RequireDebugFalse',
+#         },
+#     },
+#     'handlers': {  # 日志输出渠道
+#         'console': {  # 在控制台输出时的实例
+#             'level': 'DEBUG',  # 日志等级；debug是最低等级，那么只要比它高等级的信息都会被记录
+#             'filters': ['require_debug_true'],  # 在debug=True下才会打印在控制台
+#             'class': 'logging.StreamHandler',  # 使用的python的logging模块中的StreamHandler来进行输出
+#             'formatter': 'simple'
+#         },
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             # 日志位置,日志文件名,日志保存目录必须手动创建
+#             'filename': os.path.join(BASE_DIR, "logs/luffy.log"),  # 注意，你的文件应该有读写权限。
+#             # 日志文件的最大值,这里我们设置300M
+#             'maxBytes': 300 * 1024 * 1024,
+#             # 日志文件的数量,设置最大日志数量为10
+#             'backupCount': 10,
+#             # 日志格式:详细格式
+#             'formatter': 'verbose',
+#             'encoding': 'utf-8',  # 设置默认编码，否则打印出来汉字乱码
+#         },
+#     },
+#     # 日志对象
+#     'loggers': {
+#         'django': {  # 和django结合起来使用，将django中之前的日志输出内容的时候，按照我们的日志配置进行输出，
+#             'handlers': ['console', 'file'],  # 将来项目上线，把console去掉
+#             'propagate': True,
+#             # 冒泡：是否将日志信息记录冒泡给其他的日志处理系统，工作中都是True，
+#             # 不然django这个日志系统捕获到日志信息之后，其他模块中可能也有日志记录功能的模块，就获取不到这个日志信息了
+#             'level': 'DEBUG',  # 日志接受器级别
+#         },
+#     }
+# }
+JWT_AUTH = {
+    # token设置过期时间1天，之前的默认信息在rest_framework_jwt /setting里面去看
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=1),
+    # 设置前缀
+    "JWT_AUTH_HEADER_PREFIX": "Bearer",
+    # 自定义的返回体格式，文件名等需要自己修改
+    "JWT_RESPONSE_PAYLOAD_HANDLER": "utils.jwt_handler.jwt_response_payload_handler"
+
 }
