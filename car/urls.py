@@ -14,15 +14,45 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
-from rest_framework.schemas import get_schema_view
-from rest_framework_swagger.renderers import SwaggerUIRenderer,OpenAPIRenderer
-schema_view=get_schema_view(title='API_Doc',renderer_classes=[OpenAPIRenderer,SwaggerUIRenderer])
+# coreapi 配置
+from rest_framework.documentation import include_docs_urls
+# swagger 配置
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+Schema_view = get_schema_view(
+    openapi.Info(
+        title="汽车品牌接口文档",
+        default_version='v1.0',
+        description="秦旺django rest_framework 接口文档",
+        terms_of_service="http://qinwang.work",
+        contact=openapi.Contact(email="qinwang@codemao.cn"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    # permission_classes=(permissions.AllowAny,),  权限类
+)
+
 urlpatterns = [
+    # 主路由
     path('admin/', admin.site.urls),
     path('brand/', include("brand.urls")),
     path('type/', include("type.urls")),
-    path('docs/', schema_view, name='docs'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+
+
+
+    #coreapi 配置
+    path("docs/", include_docs_urls(title="API文档", description="秦旺的接口文档平台")),
+
+    # swagger 配置
+    re_path(r'swagger(?P<format>.json|.yaml)$', Schema_view.without_ui(cache_timeout=0),
+            name='schema-json'),
+    path('swagger/', Schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', Schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
+
+
+

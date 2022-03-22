@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import BrandView
-from rest_framework_swagger.views import get_swagger_view
+# from rest_framework_swagger.views import get_swagger_view
 
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
 # 自定义路由
@@ -33,10 +33,10 @@ router.register("", BrandView)
 #          "delete": "destroy"}
 # dict3 = {"get": "names"}
 # dict4 = {"get": "type"}
-schema_view = get_swagger_view(title='API 接口文档')
+# schema_view = get_swagger_view(title='API 接口文档')
 urlpatterns = [
     path("", include(router.urls)),
-    path('docs/', schema_view, name='docs'),  # 线上环境，干掉
+    # path('docs/', schema_view, name='docs'),  # 线上环境，干掉
 
     # path('', BrandView.as_view(dict1)),
     # path('<int:id>', BrandView.as_view(dict2)),

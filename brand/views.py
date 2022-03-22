@@ -16,6 +16,22 @@ from rest_framework import viewsets
 
 
 class BrandView(viewsets.ModelViewSet):
+    """
+    create:
+    创建汽车品牌
+    retrieve:
+    获取汽车品牌详情
+    update:
+    修改汽车品牌信息
+    destroy:
+    删除汽车品牌
+    list:
+    获取所有的汽车品牌
+    names:
+    获取所有的汽车品牌名称
+    partial_update:
+    部分更新汽车品牌信息
+    """
     queryset = Brand.objects.all()
     serializer_class = BrandModelSerializer
     # filter_backends = [DjangoFilterBackend,filters.OrderingFilter]

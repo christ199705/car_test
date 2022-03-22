@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import TypeView_1,TypeView_2
-
+from .views import TypeView
+from rest_framework import routers
+router = routers.SimpleRouter()
+router.register("",TypeView)
 urlpatterns = [
-    path('', TypeView_1.as_view()),
-    path('<int:id>', TypeView_2.as_view()),
+
 ]
+urlpatterns += router.urls

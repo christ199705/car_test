@@ -39,32 +39,9 @@ INSTALLED_APPS = [
     "brand",
     'django_filters',
     'rest_framework',
-    'rest_framework_swagger',
+    "drf_yasg",
+    "user",
 ]
-
-# swagger 的配置
-SWAGGER_SETTINGS = {
-    # 基础样式
-    'SECURITY_DEFINITIONS': {
-        "basic":{
-            'type': 'basic'
-        }
-    },
-    # 如果需要登录才能够查看接口文档, 登录的链接使用restframework自带的.
-    'LOGIN_URL': 'rest_framework:login',
-    'LOGOUT_URL': 'rest_framework:logout',
-    # 'DOC_EXPANSION': None,
-    # 'SHOW_REQUEST_HEADERS':True,
-    # 'USE_SESSION_AUTH': True,
-    # 'DOC_EXPANSION': 'list',
-    # 接口文档中方法列表以首字母升序排列
-    'APIS_SORTER': 'alpha',
-    # 如果支持json提交, 则接口文档中包含json输入框
-    'JSON_EDITOR': True,
-    # 方法列表字母排序
-    'OPERATIONS_SORTER': 'alpha',
-    'VALIDATOR_URL': None,
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -90,10 +67,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # swagger 的配置
-            'libraries': {  # Adding this section should work around the issue.
-                'staticfiles': 'django.templatetags.static',
-            },
         },
     },
 ]
@@ -155,7 +128,61 @@ REST_FRAMEWORK = {
                                'django_filters.rest_framework.DjangoFilterBackend',
                                "django_filters.rest_framework.backends.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "utils.pagination.PageNumberPaginationManual",
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 # swagger 的配置
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+# DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+# 日志配置
+LOGGING = {
+    'version': 1,  # 使用的python内置的logging模块，那么python可能会对它进行升级，所以需要写一个版本号，目前就是1版本
+    'disable_existing_loggers': False,  # 是否去掉目前项目中其他地方中以及使用的日志功能，但是将来我们可能会引入第三方的模块，里面可能内置了日志功能，所以尽量不要关闭。
+    'formatters': {  # 日志记录格式
+        'verbose': {  # levelname等级，asctime记录时间，module表示日志发生的文件名称，lineno行号，message错误信息
+            'format': '%(levelname)s %(asctime)s %(module)s %(lineno)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(module)s %(lineno)d %(message)s'
+        },
+    },
+    'filters': {  # 过滤器：可以对日志进行输出时的过滤用的
+        'require_debug_true': {  # 在debug=True下产生的一些日志信息，要不要记录日志，需要的话就在handlers中加上这个过滤器，不需要就不加
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {  # 和上面相反
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+    },
+    'handlers': {  # 日志输出渠道
+        'console': {  # 在控制台输出时的实例
+            'level': 'DEBUG',  # 日志等级；debug是最低等级，那么只要比它高等级的信息都会被记录
+            'filters': ['require_debug_true'],  # 在debug=True下才会打印在控制台
+            'class': 'logging.StreamHandler',  # 使用的python的logging模块中的StreamHandler来进行输出
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            # 日志位置,日志文件名,日志保存目录必须手动创建
+            'filename': os.path.join(BASE_DIR, "logs/luffy.log"),  # 注意，你的文件应该有读写权限。
+            # 日志文件的最大值,这里我们设置300M
+            'maxBytes': 300 * 1024 * 1024,
+            # 日志文件的数量,设置最大日志数量为10
+            'backupCount': 10,
+            # 日志格式:详细格式
+            'formatter': 'verbose',
+            'encoding': 'utf-8',  # 设置默认编码，否则打印出来汉字乱码
+        },
+    },
+    # 日志对象
+    'loggers': {
+        'django': {  # 和django结合起来使用，将django中之前的日志输出内容的时候，按照我们的日志配置进行输出，
+            'handlers': ['console', 'file'],  # 将来项目上线，把console去掉
+            'propagate': True,
+            # 冒泡：是否将日志信息记录冒泡给其他的日志处理系统，工作中都是True，
+            # 不然django这个日志系统捕获到日志信息之后，其他模块中可能也有日志记录功能的模块，就获取不到这个日志信息了
+            'level': 'DEBUG',  # 日志接受器级别
+        },
+    }
+}

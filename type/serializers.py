@@ -2,11 +2,13 @@ from rest_framework import serializers
 
 from brand.models import Brand
 from .models import Type
+from brand.serializers import BrandModelSerializer
 
 
 class TypeModelSerializer(serializers.ModelSerializer):
     # B_id = serializers.StringRelatedField(label="所属品牌")
-    B_id = serializers.SlugRelatedField(slug_field="name",queryset = Brand.objects.all())
+    B_id = serializers.SlugRelatedField(slug_field="name", queryset=Brand.objects.all())
+
     # queryset = Brand.objects.all()
     class Meta:
         model = Type
@@ -18,3 +20,11 @@ class TypeModelSerializer(serializers.ModelSerializer):
         elif attrs["year_count"] < 0:
             raise serializers.ValidationError("{'error_code':400,'error_message':'年销量不能小于0'}")
         return attrs
+
+
+class TypeNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = ("id", "name")
+
+
